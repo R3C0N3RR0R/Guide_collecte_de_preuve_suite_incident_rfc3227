@@ -1,1 +1,613 @@
+Network Working Group                                       D. Brezinski
+
+Request for Comments: 3227                                      In-Q-Tel
+
+BCP: 55                                                      T. Killalea
+
+Category: Best Current Practice                                neart.org
+
+                                                           Février 2002
+
+            Lignes directrices pour la collecte et l'archivage de preuves
+
+Statut de ce document
+
+   Ce document spécifie une meilleure pratique courante pour la
+
+   communauté Internet, et demande des discussions et des suggestions pour
+
+   des améliorations.  La distribution de ce document est illimitée.
+
+Avis de copyright
+
+   Copyright (C) The Internet Society (2002).  Tous droits réservés.
+
+Résumé
+
+   Un "incident de sécurité" tel que défini dans le "Glossaire de sécurité Internet",
+
+   RFC 2828, est un événement système pertinent pour la sécurité dans lequel la
+
+   politique de sécurité du système est désobéie ou autrement violée.  Le but de
+
+   ce document est de fournir aux administrateurs système des lignes directrices sur
+
+   la collecte et l'archivage de preuves pertinentes pour un tel incident de sécurité.
+
+   Si la collecte de preuves est effectuée correctement, elle est beaucoup plus utile
+
+   pour appréhender l'attaquant, et a une bien meilleure chance d'être admissible
+
+   en cas de poursuite judiciaire.
+
+Table des matières
+
+   1 Introduction.................................................... 2
+
+     1.1 Conventions utilisées dans ce document....................... 2
+
+   2 Principes directeurs lors de la collecte de preuves.............. 3
+
+     2.1 Ordre de volatilité......................................... 4
+
+     2.2 Choses à éviter............................................. 4
+
+     2.3 Considérations de confidentialité............................ 5
+
+     2.4 Considérations légales....................................... 5
+
+   3 La procédure de collecte........................................ 6
+
+     3.1 Transparence................................................ 6
+
+     3.2 Étapes de collecte............................................ 6
+
+   4 La procédure d'archivage......................................... 7
+
+     4.1 Chaîne de possession............................................ 7
+
+     4.2 L'archive................................................. 7
+
+   5 Outils dont vous aurez besoin....................................... 7
+
+Brezinski & Killalea     Best Current Practice                  [Page 1]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+   6 Références...................................................... 8
+
+   7 Remerciements................................................ 8
+
+   8 Considérations de sécurité......................................... 8
+
+   9 Adresses des auteurs.............................................. 9
+
+   10 Déclaration de copyright complète.......................................10
+
+1 Introduction
+
+   Un "incident de sécurité" tel que défini dans [RFC2828] est un événement système
+
+   pertinent pour la sécurité dans lequel la politique de sécurité du système est
+
+   désobéie ou autrement violée.  Le but de ce document est de fournir aux
+
+   administrateurs système des lignes directrices sur la collecte et l'archivage de
+
+   preuves pertinentes pour un tel incident de sécurité.  Ce n'est pas notre intention
+
+   d'insister pour que tous les administrateurs système suivent rigoureusement ces
+
+   lignes directrices chaque fois qu'ils ont un incident de sécurité.  Plutôt, nous
+
+   voulons fournir des conseils sur ce qu'ils devraient faire s'ils choisissent de
+
+   collecter et protéger des informations relatives à une intrusion.
+
+   Une telle collecte représente un effort considérable de la part de
+
+   l'administrateur système.  De grands progrès ont été réalisés ces dernières années
+
+   pour accélérer la réinstallation du système d'exploitation et faciliter le retour
+
+   d'un système à un état "connu", rendant ainsi l'option "facile" encore plus
+
+   attractive.  Pendant ce temps, peu de choses ont été faites pour fournir des moyens
+
+   faciles d'archiver des preuves (l'option difficile).  De plus, l'augmentation des
+
+   capacités de disque et de mémoire et l'utilisation plus répandue de tactiques de
+
+   furtivité et de dissimulation de traces par les attaquants ont exacerbé le problème.
+
+   Si la collecte de preuves est effectuée correctement, elle est beaucoup plus utile
+
+   pour appréhender l'attaquant, et a une bien meilleure chance d'être admissible
+
+   en cas de poursuite judiciaire.
+
+   Vous devriez utiliser ces lignes directrices comme base pour formuler les procédures
+
+   de collecte de preuves de votre site, et devriez incorporer les procédures de votre
+
+   site dans votre documentation de gestion d'incidents.  Les lignes directrices de ce
+
+   document peuvent ne pas être appropriées sous toutes les juridictions.  Une fois que
+
+   vous avez formulé les procédures de collecte de preuves de votre site, vous devriez
+
+   faire confirmer par les forces de l'ordre de votre juridiction qu'elles sont adéquates.
+
+1.1 Conventions utilisées dans ce document
+
+   Les mots-clés "REQUIRED" (REQUIS), "MUST" (DOIT), "MUST NOT" (NE DOIT PAS), "SHOULD"
+
+   (DEVRAIT), "SHOULD NOT" (NE DEVRAIT PAS), et "MAY" (PEUT) dans ce document sont à
+
+   interpréter comme décrit dans "Mots-clés à utiliser dans les RFC pour indiquer les
+
+   niveaux d'exigence" [RFC2119].
+
+Brezinski & Killalea     Best Current Practice                  [Page 2]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+2 Principes directeurs lors de la collecte de preuves
+
+      -  Respecter la politique de sécurité de votre site et engager le
+
+         personnel approprié de gestion d'incidents et des forces de l'ordre.
+
+      -  Capturer une image aussi précise que possible du système.
+
+      -  Tenir des notes détaillées.  Celles-ci devraient inclure les dates et heures.
+
+         Si possible, générer une transcription automatique.  (par exemple, sur les
+
+         systèmes Unix, le programme 'script' peut être utilisé, cependant le fichier
+
+         de sortie qu'il génère ne devrait pas être sur un média qui fait partie des
+
+         preuves).  Les notes et impressions devraient être signées et datées.
+
+      -  Noter la différence entre l'horloge système et UTC.  Pour chaque
+
+         horodatage fourni, indiquer si UTC ou l'heure locale est utilisée.
+
+      -  Être préparé à témoigner (peut-être des années plus tard) en décrivant toutes
+
+         les actions que vous avez prises et à quels moments.  Des notes détaillées
+
+         seront vitales.
+
+      -  Minimiser les modifications aux données pendant que vous les collectez.  Ceci
+
+         n'est pas limité aux modifications de contenu ; vous devriez éviter de mettre
+
+         à jour les temps d'accès aux fichiers ou répertoires.
+
+      -  Supprimer les voies externes de modification.
+
+      -  Face à un choix entre collecte et analyse, vous devriez faire la collecte
+
+         d'abord et l'analyse plus tard.
+
+      -  Bien que cela n'ait guère besoin d'être énoncé, vos procédures devraient être
+
+         réalisables.  Comme pour tout aspect d'une politique de réponse aux incidents,
+
+         les procédures devraient être testées pour assurer la faisabilité, en particulier
+
+         en situation de crise.  Si possible, les procédures devraient être automatisées
+
+         pour des raisons de rapidité et de précision.  Être méthodique.
+
+      -  Pour chaque dispositif, une approche méthodique devrait être adoptée qui suit
+
+         les lignes directrices établies dans votre procédure de collecte.  La rapidité
+
+         sera souvent critique, donc lorsqu'il y a un certain nombre de dispositifs
+
+         nécessitant un examen, il peut être approprié de répartir le travail parmi votre
+
+         équipe pour collecter les preuves en parallèle.  Cependant, sur un système donné,
+
+         la collecte devrait être faite étape par étape.
+
+      -  Procéder du volatil au moins volatil (voir l'Ordre de volatilité ci-dessous).
+
+Brezinski & Killalea     Best Current Practice                  [Page 3]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+      -  Vous devriez faire une copie au niveau binaire des médias du système.  Si vous
+
+         souhaitez faire une analyse forensique, vous devriez faire une copie au niveau
+
+         binaire de votre copie de preuve à cette fin, car votre analyse modifiera
+
+         presque certainement les temps d'accès aux fichiers.  Éviter de faire de la
+
+         forensique sur la copie de preuve.
+
+2.1 Ordre de volatilité
+
+   Lors de la collecte de preuves, vous devriez procéder du volatil au moins volatil.
+
+   Voici un exemple d'ordre de volatilité pour un système typique.
+
+      -  registres, cache
+
+      -  table de routage, cache arp, table des processus, statistiques du noyau,
+
+         mémoire
+
+      -  systèmes de fichiers temporaires
+
+      -  disque
+
+      -  données de journalisation et de surveillance distantes qui sont pertinentes
+
+         pour le système en question
+
+      -  configuration physique, topologie réseau
+
+      -  médias d'archivage
+
+2.2 Choses à éviter
+
+   Il est trop facile de détruire des preuves, même involontairement.
+
+      -  Ne pas arrêter le système jusqu'à ce que vous ayez terminé la collecte de
+
+         preuves.  Beaucoup de preuves peuvent être perdues et l'attaquant peut avoir
+
+         modifié les scripts/services de démarrage/arrêt pour détruire des preuves.
+
+      -  Ne pas faire confiance aux programmes sur le système.  Exécuter vos programmes
+
+         de collecte de preuves depuis des médias appropriés protégés (voir ci-dessous).
+
+      -  Ne pas exécuter de programmes qui modifient le temps d'accès de tous les fichiers
+
+         sur le système (par exemple, 'tar' ou 'xcopy').
+
+Brezinski & Killalea     Best Current Practice                  [Page 4]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+      -  Lors de la suppression des voies externes de modification, noter que simplement
+
+         déconnecter ou filtrer du réseau peut déclencher des "interrupteurs de sécurité"
+
+         qui détectent quand ils sont hors réseau et effacent les preuves.
+
+2.3 Considérations de confidentialité
+
+      -  Respecter les règles et lignes directrices de confidentialité de votre entreprise
+
+         et de votre juridiction légale.  En particulier, s'assurer qu'aucune information
+
+         collectée avec les preuves que vous recherchez n'est disponible à quiconque qui
+
+         n'aurait normalement pas accès à cette information.  Ceci inclut l'accès aux
+
+         fichiers de journal (qui peuvent révéler des modèles de comportement utilisateur)
+
+         ainsi qu'aux fichiers de données personnelles.
+
+      -  Ne pas empiéter sur la vie privée des personnes sans justification forte.
+
+         En particulier, ne pas collecter d'informations depuis des zones auxquelles vous
+
+         n'avez normalement pas de raison d'accéder (telles que les espaces de stockage
+
+         de fichiers personnels) sauf si vous avez une indication suffisante qu'il y a
+
+         un véritable incident.
+
+      -  S'assurer d'avoir le soutien des procédures établies de votre entreprise en
+
+         prenant les mesures que vous faites pour collecter des preuves d'un incident.
+
+2.4 Considérations légales
+
+   Les preuves informatiques doivent être
+
+      -  Admissibles :  Elles doivent se conformer à certaines règles légales avant de
+
+         pouvoir être présentées devant un tribunal.
+
+      -  Authentiques :  Il doit être possible de lier positivement le matériel probant
+
+         à l'incident.
+
+      -  Complètes :  Elles doivent raconter toute l'histoire et pas seulement une
+
+         perspective particulière.
+
+      -  Fiables :  Il ne doit rien y avoir dans la façon dont les preuves ont été
+
+         collectées et gérées par la suite qui jette un doute sur leur authenticité et
+
+         leur véracité.
+
+      -  Crédibles :  Elles doivent être facilement crédibles et compréhensibles par un
+
+         tribunal.
+
+Brezinski & Killalea     Best Current Practice                  [Page 5]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+3 La procédure de collecte
+
+   Vos procédures de collecte devraient être aussi détaillées que possible.  Comme c'est
+
+   le cas pour vos procédures globales de gestion d'incidents, elles devraient être
+
+   sans ambiguïté et devraient minimiser la quantité de prise de décision nécessaire
+
+   pendant le processus de collecte.
+
+3.1 Transparence
+
+   Les méthodes utilisées pour collecter les preuves devraient être transparentes et
+
+   reproductibles.  Vous devriez être préparé à reproduire précisément les méthodes que
+
+   vous avez utilisées, et avoir ces méthodes testées par des experts indépendants.
+
+3.2 Étapes de collecte
+
+      -  Où sont les preuves ?  Lister quels systèmes ont été impliqués dans l'incident
+
+         et depuis lesquels des preuves seront collectées.
+
+      -  Établir ce qui est susceptible d'être pertinent et admissible.  En cas de doute,
+
+         privilégier la collecte de trop plutôt que pas assez.
+
+      -  Pour chaque système, obtenir l'ordre de volatilité pertinent.
+
+      -  Supprimer les voies externes de modification.
+
+      -  Suivant l'ordre de volatilité, collecter les preuves avec des outils comme
+
+         discuté dans la section 5.
+
+      -  Enregistrer l'ampleur de la dérive de l'horloge du système.
+
+      -  Questionner ce qui d'autre peut être une preuve pendant que vous travaillez
+
+         à travers les étapes de collecte.
+
+      -  Documenter chaque étape.
+
+      -  Ne pas oublier les personnes impliquées.  Prendre des notes sur qui était là
+
+         et ce qu'ils faisaient, ce qu'ils ont observé et comment ils ont réagi.
+
+   Lorsque c'est faisable, vous devriez considérer de générer des sommes de contrôle et
+
+   de signer cryptographiquement les preuves collectées, car cela peut faciliter la
+
+   préservation d'une chaîne de preuves solide.  En le faisant, vous ne devez pas
+
+   modifier les preuves.
+
+Brezinski & Killalea     Best Current Practice                  [Page 6]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+4 La procédure d'archivage
+
+   Les preuves doivent être strictement sécurisées.  De plus, la chaîne de possession
+
+   doit être clairement documentée.
+
+4.1 Chaîne de possession
+
+   Vous devriez être capable de décrire clairement comment les preuves ont été trouvées,
+
+   comment elles ont été manipulées et tout ce qui leur est arrivé.
+
+   Les éléments suivants doivent être documentés
+
+      -  Où, quand, et par qui les preuves ont été découvertes et collectées.
+
+      -  Où, quand et par qui les preuves ont été manipulées ou examinées.
+
+      -  Qui avait la garde des preuves, pendant quelle période.  Comment elles ont été
+
+         stockées.
+
+      -  Quand les preuves ont changé de garde, quand et comment le transfert s'est
+
+         produit (inclure les numéros d'expédition, etc.).
+
+4.2 Où et comment archiver
+
+   Si possible, des médias couramment utilisés (plutôt qu'un média de stockage obscur)
+
+   devraient être utilisés pour l'archivage.
+
+   L'accès aux preuves devrait être extrêmement restreint et devrait être clairement
+
+   documenté.  Il devrait être possible de détecter un accès non autorisé.
+
+5 Outils dont vous aurez besoin
+
+   Vous devriez avoir les programmes dont vous avez besoin pour faire la collecte de
+
+   preuves et la forensique sur des médias en lecture seule (par exemple, un CD).  Vous
+
+   devriez avoir préparé un tel ensemble d'outils pour chacun des systèmes d'exploitation
+
+   que vous gérez à l'avance de devoir l'utiliser.
+
+   Votre ensemble d'outils devrait inclure les éléments suivants :
+
+      -  un programme pour examiner les processus (par exemple, 'ps').
+
+      -  des programmes pour examiner l'état du système (par exemple, 'showrev',
+
+         'ifconfig', 'netstat', 'arp').
+
+      -  un programme pour faire des copies bit-à-bit (par exemple, 'dd', 'SafeBack').
+
+Brezinski & Killalea     Best Current Practice                  [Page 7]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+      -  des programmes pour générer des sommes de contrôle et des signatures (par exemple,
+
+         'sha1sum', un 'dd' avec somme de contrôle activée, 'SafeBack', 'pgp').
+
+      -  des programmes pour générer des images mémoire et pour les examiner
+
+         (par exemple, 'gcore', 'gdb').
+
+      -  des scripts pour automatiser la collecte de preuves (par exemple, The Coroner's
+
+         Toolkit [FAR1999]).
+
+   Les programmes dans votre ensemble d'outils devraient être liés statiquement, et ne
+
+   devraient pas nécessiter l'utilisation de bibliothèques autres que celles sur le
+
+   média en lecture seule.  Même alors, puisque les rootkits modernes peuvent être
+
+   installés via des modules de noyau chargeables, vous devriez considérer que vos outils
+
+   pourraient ne pas vous donner une image complète du système.
+
+   Vous devriez être préparé à témoigner de l'authenticité et de la fiabilité des outils
+
+   que vous utilisez.
+
+6 Références
+
+   [FAR1999]   Farmer, D., et W Venema, "Computer Forensics Analysis
+
+               Class Handouts", http://www.fish.com/forensics/
+
+   [RFC2119]   Bradner, S., "Key words for use in RFCs to Indicate
+
+               Requirement Levels", BCP 14, RFC 2119, Mars 1997.
+
+   [RFC2196]   Fraser, B., "Site Security Handbook", FYI 8, RFC 2196,
+
+               Septembre 1997.
+
+   [RFC2350]   Brownlee, N. et E. Guttman, "Expectations for Computer
+
+               Security Incident Response", FYI 8, RFC 2350, Juin 1998.
+
+   [RFC2828]   Shirey, R., "Internet Security Glossary", FYI 36, RFC
+
+                2828, Mai 2000.
+
+7 Remerciements
+
+   Nous remercions avec gratitude les commentaires constructifs reçus de
+
+   Harald Alvestrand, Byron Collie, Barbara Y. Fraser, Gordon Lennox,
+
+   Andrew Rees, Steve Romig et Floyd Short.
+
+8 Considérations de sécurité
+
+   Ce document entier discute des questions de sécurité.
+
+Brezinski & Killalea     Best Current Practice                  [Page 8]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+9 Adresses des auteurs
+
+   Dominique Brezinski
+
+   In-Q-Tel
+
+   1000 Wilson Blvd., Ste. 2900
+
+   Arlington, VA 22209
+
+   USA
+
+   EMail: dbrezinski@In-Q-Tel.org
+
+   Tom Killalea
+
+   Lisi/n na Bro/n
+
+   Be/al A/tha na Muice
+
+   Co. Mhaigh Eo
+
+   IRLANDE
+
+   Phone: +1 206 266-2196
+
+   EMail: tomk@neart.org
+
+Brezinski & Killalea     Best Current Practice                  [Page 9]
+
+RFC 3227           Collecte et archivage de preuves       Février 2002
+
+10.  Déclaration de copyright complète
+
+   Copyright (C) The Internet Society (2002).  Tous droits réservés.
+
+   Ce document et ses traductions peuvent être copiés et fournis à
+
+   d'autres, et des œuvres dérivées qui commentent ou expliquent autrement
+
+   ou aident à sa mise en œuvre peuvent être préparées, copiées, publiées
+
+   et distribuées, en tout ou en partie, sans restriction d'aucune
+
+   sorte, à condition que l'avis de copyright ci-dessus et ce paragraphe soient
+
+   inclus sur toutes ces copies et œuvres dérivées.  Cependant, ce document
+
+   lui-même ne peut pas être modifié de quelque manière que ce soit, comme en
+
+   supprimant l'avis de copyright ou les références à l'Internet Society ou
+
+   d'autres organisations Internet, sauf si nécessaire aux fins de
+
+   développement de normes Internet dans lesquelles les procédures pour
+
+   les copyrights définies dans le processus de normes Internet doivent être
+
+   suivies, ou comme requis pour le traduire dans des langues autres que
+
+   l'anglais.
+
+   Les permissions limitées accordées ci-dessus sont perpétuelles et ne seront pas
+
+   révoquées par l'Internet Society ou ses successeurs ou cessionnaires.
+
+   Ce document et les informations qu'il contient sont fournis sur une base
+
+   "TEL QUEL" et L'INTERNET SOCIETY ET L'INTERNET ENGINEERING TASK FORCE
+
+   DÉCLINENT TOUTES GARANTIES, EXPRESSES OU IMPLICITES, Y COMPRIS MAIS SANS
+
+   S'Y LIMITER TOUTE GARANTIE QUE L'UTILISATION DES INFORMATIONS ICI
+
+   N'ENFREINDRA AUCUN DROIT OU TOUTE GARANTIE IMPLICITE DE COMMERCIALISATION
+
+   OU D'ADÉQUATION À UN USAGE PARTICULIER.
+
+Remerciement
+
+   Le financement de la fonction d'éditeur RFC est actuellement fourni par
+
+   l'Internet Society.
+
+Brezinski & Killalea     Best Current Practice                 [Page 10]
+
 
