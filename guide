@@ -1,26 +1,4 @@
-Network Working Group                                       D. Brezinski
-
-Request for Comments: 3227                                      In-Q-Tel
-
-BCP: 55                                                      T. Killalea
-
-Category: Best Current Practice                                neart.org
-
-                                                           Février 2002
-
             Lignes directrices pour la collecte et l'archivage de preuves
-
-Statut de ce document
-
-   Ce document spécifie une meilleure pratique courante pour la
-
-   communauté Internet, et demande des discussions et des suggestions pour
-
-   des améliorations.  La distribution de ce document est illimitée.
-
-Avis de copyright
-
-   Copyright (C) The Internet Society (2002).  Tous droits réservés.
 
 Résumé
 
@@ -70,10 +48,6 @@ Table des matières
 
    5 Outils dont vous aurez besoin....................................... 7
 
-Brezinski & Killalea     Best Current Practice                  [Page 1]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
-
    6 Références...................................................... 8
 
    7 Remerciements................................................ 8
@@ -83,6 +57,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
    9 Adresses des auteurs.............................................. 9
 
    10 Déclaration de copyright complète.......................................10
+
 
 1 Introduction
 
@@ -138,6 +113,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
    faire confirmer par les forces de l'ordre de votre juridiction qu'elles sont adéquates.
 
+
 1.1 Conventions utilisées dans ce document
 
    Les mots-clés "REQUIRED" (REQUIS), "MUST" (DOIT), "MUST NOT" (NE DOIT PAS), "SHOULD"
@@ -148,9 +124,6 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
    niveaux d'exigence" [RFC2119].
 
-Brezinski & Killalea     Best Current Practice                  [Page 2]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
 
 2 Principes directeurs lors de la collecte de preuves
 
@@ -216,10 +189,6 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
       -  Procéder du volatil au moins volatil (voir l'Ordre de volatilité ci-dessous).
 
-Brezinski & Killalea     Best Current Practice                  [Page 3]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
-
       -  Vous devriez faire une copie au niveau binaire des médias du système.  Si vous
 
          souhaitez faire une analyse forensique, vous devriez faire une copie au niveau
@@ -229,6 +198,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
          presque certainement les temps d'accès aux fichiers.  Éviter de faire de la
 
          forensique sur la copie de preuve.
+
 
 2.1 Ordre de volatilité
 
@@ -254,6 +224,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
       -  médias d'archivage
 
+
 2.2 Choses à éviter
 
    Il est trop facile de détruire des preuves, même involontairement.
@@ -272,15 +243,12 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
          sur le système (par exemple, 'tar' ou 'xcopy').
 
-Brezinski & Killalea     Best Current Practice                  [Page 4]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
-
       -  Lors de la suppression des voies externes de modification, noter que simplement
 
          déconnecter ou filtrer du réseau peut déclencher des "interrupteurs de sécurité"
 
          qui détectent quand ils sont hors réseau et effacent les preuves.
+
 
 2.3 Considérations de confidentialité
 
@@ -310,6 +278,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
          prenant les mesures que vous faites pour collecter des preuves d'un incident.
 
+
 2.4 Considérations légales
 
    Les preuves informatiques doivent être
@@ -336,9 +305,6 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
          tribunal.
 
-Brezinski & Killalea     Best Current Practice                  [Page 5]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
 
 3 La procédure de collecte
 
@@ -350,6 +316,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
    pendant le processus de collecte.
 
+
 3.1 Transparence
 
    Les méthodes utilisées pour collecter les preuves devraient être transparentes et
@@ -357,6 +324,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
    reproductibles.  Vous devriez être préparé à reproduire précisément les méthodes que
 
    vous avez utilisées, et avoir ces méthodes testées par des experts indépendants.
+
 
 3.2 Étapes de collecte
 
@@ -396,15 +364,13 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
    modifier les preuves.
 
-Brezinski & Killalea     Best Current Practice                  [Page 6]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
 
 4 La procédure d'archivage
 
    Les preuves doivent être strictement sécurisées.  De plus, la chaîne de possession
 
    doit être clairement documentée.
+
 
 4.1 Chaîne de possession
 
@@ -426,6 +392,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
 
          produit (inclure les numéros d'expédition, etc.).
 
+
 4.2 Où et comment archiver
 
    Si possible, des médias couramment utilisés (plutôt qu'un média de stockage obscur)
@@ -435,6 +402,7 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
    L'accès aux preuves devrait être extrêmement restreint et devrait être clairement
 
    documenté.  Il devrait être possible de détecter un accès non autorisé.
+
 
 5 Outils dont vous aurez besoin
 
@@ -455,10 +423,6 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
          'ifconfig', 'netstat', 'arp').
 
       -  un programme pour faire des copies bit-à-bit (par exemple, 'dd', 'SafeBack').
-
-Brezinski & Killalea     Best Current Practice                  [Page 7]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
 
       -  des programmes pour générer des sommes de contrôle et des signatures (par exemple,
 
@@ -485,129 +449,5 @@ RFC 3227           Collecte et archivage de preuves       Février 2002
    Vous devriez être préparé à témoigner de l'authenticité et de la fiabilité des outils
 
    que vous utilisez.
-
-6 Références
-
-   [FAR1999]   Farmer, D., et W Venema, "Computer Forensics Analysis
-
-               Class Handouts", http://www.fish.com/forensics/
-
-   [RFC2119]   Bradner, S., "Key words for use in RFCs to Indicate
-
-               Requirement Levels", BCP 14, RFC 2119, Mars 1997.
-
-   [RFC2196]   Fraser, B., "Site Security Handbook", FYI 8, RFC 2196,
-
-               Septembre 1997.
-
-   [RFC2350]   Brownlee, N. et E. Guttman, "Expectations for Computer
-
-               Security Incident Response", FYI 8, RFC 2350, Juin 1998.
-
-   [RFC2828]   Shirey, R., "Internet Security Glossary", FYI 36, RFC
-
-                2828, Mai 2000.
-
-7 Remerciements
-
-   Nous remercions avec gratitude les commentaires constructifs reçus de
-
-   Harald Alvestrand, Byron Collie, Barbara Y. Fraser, Gordon Lennox,
-
-   Andrew Rees, Steve Romig et Floyd Short.
-
-8 Considérations de sécurité
-
-   Ce document entier discute des questions de sécurité.
-
-Brezinski & Killalea     Best Current Practice                  [Page 8]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
-
-9 Adresses des auteurs
-
-   Dominique Brezinski
-
-   In-Q-Tel
-
-   1000 Wilson Blvd., Ste. 2900
-
-   Arlington, VA 22209
-
-   USA
-
-   EMail: dbrezinski@In-Q-Tel.org
-
-   Tom Killalea
-
-   Lisi/n na Bro/n
-
-   Be/al A/tha na Muice
-
-   Co. Mhaigh Eo
-
-   IRLANDE
-
-   Phone: +1 206 266-2196
-
-   EMail: tomk@neart.org
-
-Brezinski & Killalea     Best Current Practice                  [Page 9]
-
-RFC 3227           Collecte et archivage de preuves       Février 2002
-
-10.  Déclaration de copyright complète
-
-   Copyright (C) The Internet Society (2002).  Tous droits réservés.
-
-   Ce document et ses traductions peuvent être copiés et fournis à
-
-   d'autres, et des œuvres dérivées qui commentent ou expliquent autrement
-
-   ou aident à sa mise en œuvre peuvent être préparées, copiées, publiées
-
-   et distribuées, en tout ou en partie, sans restriction d'aucune
-
-   sorte, à condition que l'avis de copyright ci-dessus et ce paragraphe soient
-
-   inclus sur toutes ces copies et œuvres dérivées.  Cependant, ce document
-
-   lui-même ne peut pas être modifié de quelque manière que ce soit, comme en
-
-   supprimant l'avis de copyright ou les références à l'Internet Society ou
-
-   d'autres organisations Internet, sauf si nécessaire aux fins de
-
-   développement de normes Internet dans lesquelles les procédures pour
-
-   les copyrights définies dans le processus de normes Internet doivent être
-
-   suivies, ou comme requis pour le traduire dans des langues autres que
-
-   l'anglais.
-
-   Les permissions limitées accordées ci-dessus sont perpétuelles et ne seront pas
-
-   révoquées par l'Internet Society ou ses successeurs ou cessionnaires.
-
-   Ce document et les informations qu'il contient sont fournis sur une base
-
-   "TEL QUEL" et L'INTERNET SOCIETY ET L'INTERNET ENGINEERING TASK FORCE
-
-   DÉCLINENT TOUTES GARANTIES, EXPRESSES OU IMPLICITES, Y COMPRIS MAIS SANS
-
-   S'Y LIMITER TOUTE GARANTIE QUE L'UTILISATION DES INFORMATIONS ICI
-
-   N'ENFREINDRA AUCUN DROIT OU TOUTE GARANTIE IMPLICITE DE COMMERCIALISATION
-
-   OU D'ADÉQUATION À UN USAGE PARTICULIER.
-
-Remerciement
-
-   Le financement de la fonction d'éditeur RFC est actuellement fourni par
-
-   l'Internet Society.
-
-Brezinski & Killalea     Best Current Practice                 [Page 10]
 
 
